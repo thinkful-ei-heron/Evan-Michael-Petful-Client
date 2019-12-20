@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PetContext from '../../Context/PetContext';
 import './Buttons.css'
+import ApiService from '../../Services/ApiService';
 
 export default class Buttons extends Component {
 
@@ -42,8 +43,10 @@ export default class Buttons extends Component {
 
   handleClickWantCat = () => {
     this.context.setInQueue();
-    console.log(this.context)
     this.handleChangeAdoptClass();
+    ApiService.getCats()
+      .then(cat => this.context.setPetList([cat]))
+      .catch(this.context.setError)
   }
 
   handleClickWantDog = () => {

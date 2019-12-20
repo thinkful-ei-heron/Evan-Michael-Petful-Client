@@ -30,7 +30,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <Header />
-        {this.context.inQueue ? this.renderPetInfo() : this.renderDescription()}
+        {this.context.inQueue && this.context.petList.length > 0 ? this.renderPetInfo() : this.renderDescription()}
         <Buttons />
       </div>
     );
