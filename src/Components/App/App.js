@@ -7,30 +7,31 @@ import PetContext from '../../Context/PetContext';
 import './App.css';
 
 export default class App extends Component {
-
   static contextType = PetContext;
 
   renderPetInfo() {
-    const { petList } = this.context
+    const { petList } = this.context;
     return (
-      <PetInfo 
-        key = {petList}
-        pet = {petList}
-        />
-    )
+      <>
+        {' '}
+        {petList.map(pet => (
+          <PetInfo key={pet} pet={pet} />
+        ))}
+      </>
+    );
   }
 
   renderDescription() {
-    return (
-      <Description />
-    )
+    return <Description />;
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        {this.context.inQueue || this.context.petList.length > 0 ? this.renderPetInfo() : this.renderDescription()}
+        {this.context.inQueue && this.context.petList.length > 0
+          ? this.renderPetInfo()
+          : this.renderDescription()}
         <Buttons />
       </div>
     );
