@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-import ApiService from '../../Services/ApiService';
 import PetContext from '../../Context/PetContext';
+import './PetInfo.css';
 
 export default class PetInfo extends Component {
   static contextType = PetContext;
 
+  petPosition(index, type) {
+    if (index === 0) {
+      return <h3>Next pet available for adoption:</h3>;
+    } else {
+      return <h3>Upcoming pet (position in line: {index + 1}): </h3>;
+    }
+  }
+
   render() {
-    const { pet } = this.props;
+    const { pet, position, type } = this.props;
     return (
       <div>
         <section>
-          <h3>Next pet available for adoption:</h3>
+          {this.petPosition(position)}
           <fieldset>
             <legend>{pet.name}</legend>
-            <img src={pet.imageURL} alt={pet.imageDescription} />
+            <img
+              className="pet-image"
+              src={pet.imageURL}
+              alt={pet.imageDescription}
+            />
             <p>{pet.imageDescription}</p>
             <li>{pet.sex}</li>
             <li>{pet.age}</li>

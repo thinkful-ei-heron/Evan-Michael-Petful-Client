@@ -45,7 +45,7 @@ export default class Buttons extends Component {
     this.handleChangeAdoptClass();
     ApiService.getCat()
       .then(cat => {
-        this.context.setPetList([cat]);
+        this.context.setCatList([cat]);
       })
       .catch(this.context.setError);
   };
@@ -55,7 +55,7 @@ export default class Buttons extends Component {
     this.handleChangeAdoptClass();
     ApiService.getDog()
       .then(dog => {
-        this.context.setPetList([dog]);
+        this.context.setDogList([dog]);
       })
       .catch(this.context.setError);
   };
@@ -63,7 +63,17 @@ export default class Buttons extends Component {
   handleClickWantBoth = () => {
     this.context.setInQueue();
     this.handleChangeAdoptClass();
-    ApiService.getBoth().then(this.context.setPetList);
+    // ApiService.getBoth().then(this.context.setPetList);
+    ApiService.getCat()
+      .then(cat => {
+        this.context.setCatList([cat]);
+      })
+      .catch(this.context.setError);
+    ApiService.getDog()
+      .then(dog => {
+        this.context.setDogList([dog]);
+      })
+      .catch(this.context.setError);
   };
 
   handleClickAdopt = () => {
