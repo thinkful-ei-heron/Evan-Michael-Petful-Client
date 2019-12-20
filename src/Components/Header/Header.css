@@ -1,0 +1,18 @@
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-header-title {
+  margin: 2% 0% 0% 0%;
+  font-size: 340%;
+  color: #E0F1FF;
+}
+
+.App-header-slogan {
+  font-variant: small-caps;
+  margin: 0% 0% 5% 0%;
+}

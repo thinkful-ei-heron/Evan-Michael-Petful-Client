@@ -1,0 +1,64 @@
+.Button-section {
+  margin: 2px;
+}
+
+.hidden {
+  display: none;
+}
+
+.Button-cat {
+  padding: 12px;
+  margin: 0px 5% 2% 5%;
+  text-decoration: none;
+  color:#D4DDFF;
+  background-color: #FFD871;
+  border-radius: 5%;
+  display: inline-block;
+  width: 80%;
+  font-size: 100%;
+  font-variant: small-caps;
+}
+
+.Button-dog {
+  padding: 12px;
+  margin: 0px 5% 2% 5%;
+  text-decoration: none;
+  color:#D4DDFF;
+  border-radius: 5%;
+  display: inline-block;
+  width: 80%;
+  font-size: 100%;
+  font-variant: small-caps;
+}
+
+.Button-both {
+  padding: 12px;
+  margin: 0px 5% 2% 5%;
+  text-decoration: none;
+  color:#D4DDFF;
+  border-radius: 5%;
+  display: inline-block;
+  width: 80%;
+  font-size: 100%;
+  font-variant: small-caps;
+}
+
+.Button-adopt:hover {
+  cursor: pointer;
+}
+
+.Button-cat:hover  {
+  cursor: pointer;
+}
+
+.Button-dog:hover  {
+  cursor: pointer;
+}
+
+.Button-both:hover  {
+  cursor: pointer;
+}
+
+.Button-adopt:hover  {
+  cursor: pointer;
+}

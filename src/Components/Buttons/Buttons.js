@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
+import './Buttons.css'
 
-function Buttons() {
-  return (
-    <section className='Button-section'>
-      <button className='hidden'>
-        I want a cat!
-      </button>
-      <button className='hidden'>
-        I want a dog!
-      </button>
-      {/* <button className='hidden'>
-        I want a cat or a dog!
-      </button> */}
-      <button className='hidden'>
-         Adopt your pet!
-      </button>
-    </section>
-  );
-}
+export default class Buttons extends Component {
 
-export default Buttons;
+  handleClick() {
+
+  }
+
+  render() {
+    return (
+      <section className='Button-section'>
+        <button className='Button-cat'>
+          I want a cat!
+        </button>
+        <button className='Button-dog'>
+          I want a dog!
+        </button>
+        <button className='Button-both'>
+          I want both!
+        </button>
+        <button className='hidden'>
+          Adopt your pet!
+        </button>
+      </section>
+    )
+  }
+};
