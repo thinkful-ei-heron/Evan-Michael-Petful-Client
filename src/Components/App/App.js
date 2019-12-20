@@ -11,11 +11,11 @@ export default class App extends Component {
   static contextType = PetContext;
 
   renderPetInfo() {
-    const { pet } = this.context
+    const { petList } = this.context
     return (
       <PetInfo 
-        key = {pet}
-        pet = {pet}
+        key = {petList}
+        pet = {petList}
         />
     )
   }
@@ -30,7 +30,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <Header />
-        {this.context.inQueue && this.context.petList.length > 0 ? this.renderPetInfo() : this.renderDescription()}
+        {this.context.inQueue || this.context.petList.length > 0 ? this.renderPetInfo() : this.renderDescription()}
         <Buttons />
       </div>
     );
