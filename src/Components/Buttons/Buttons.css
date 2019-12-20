@@ -6,13 +6,56 @@
   display: none;
 }
 
+.Button-adopt {
+  padding: 12px;
+  margin: 0px 5% 2% 5%;
+  text-decoration: none;
+  color:#FFF6E3;
+  background-color: #344C70;
+  border-radius: 2%;
+  border: none;
+  display: inline-block;
+  width: 80%;
+  font-size: 100%;
+  font-variant: small-caps;
+}
+
+.Button-all {
+  padding: 12px;
+  margin: 0px 5% 2% 5%;
+  text-decoration: none;
+  color:#FFF6E3;
+  background-color: #344C70;
+  border-radius: 2%;
+  border: none;
+  display: inline-block;
+  width: 80%;
+  font-size: 100%;
+  font-variant: small-caps;
+}
+
+.Button-next {
+  padding: 12px;
+  margin: 0px 5% 2% 5%;
+  text-decoration: none;
+  color:#FFF6E3;
+  background-color: #344C70;
+  border-radius: 2%;
+  border: none;
+  display: inline-block;
+  width: 80%;
+  font-size: 100%;
+  font-variant: small-caps;
+}
+
 .Button-cat {
   padding: 12px;
   margin: 0px 5% 2% 5%;
   text-decoration: none;
-  color:#D4DDFF;
-  background-color: #FFD871;
-  border-radius: 5%;
+  color:#FFF6E3;
+  background-color: #344C70;
+  border-radius: 2%;
+  border: none;
   display: inline-block;
   width: 80%;
   font-size: 100%;
@@ -23,8 +66,10 @@
   padding: 12px;
   margin: 0px 5% 2% 5%;
   text-decoration: none;
-  color:#D4DDFF;
-  border-radius: 5%;
+  color:#FFF6E3;
+  background-color: #344C70;
+  border-radius: 2%;
+  border: none;
   display: inline-block;
   width: 80%;
   font-size: 100%;
@@ -35,8 +80,10 @@
   padding: 12px;
   margin: 0px 5% 2% 5%;
   text-decoration: none;
-  color:#D4DDFF;
-  border-radius: 5%;
+  color:#FFF6E3;
+  background-color: #344C70;
+  border-radius: 2%;
+  border: none;
   display: inline-block;
   width: 80%;
   font-size: 100%;
@@ -45,20 +92,66 @@
 
 .Button-adopt:hover {
   cursor: pointer;
+  color: #C9DFFF;
+}
+
+.Button-all:hover {
+  cursor: pointer;
+  color: #C9DFFF;
+}
+
+.Button-next:hover {
+  cursor: pointer;
+  color: #C9DFFF;
 }
 
 .Button-cat:hover  {
   cursor: pointer;
+  color: #C9DFFF;
 }
 
 .Button-dog:hover  {
   cursor: pointer;
+  color: #C9DFFF;
 }
 
 .Button-both:hover  {
   cursor: pointer;
+  color: #C9DFFF;
 }
 
-.Button-adopt:hover  {
-  cursor: pointer;
+.Button-adopt:visited {
+  text-decoration: none;
+  color:#FFF6E3;
+  background-color: #344C70;
+}
+
+.Button-all:visited {
+  text-decoration: none;
+  color:#FFF6E3;
+  background-color: #344C70;
+}
+
+.Button-next:visited {
+  text-decoration: none;
+  color:#FFF6E3;
+  background-color: #344C70;
+}
+
+.Button-cat:visited  {
+  text-decoration: none;
+  color:#FFF6E3;
+  background-color: #344C70;
+}
+
+.Button-dog:visited  {
+  text-decoration: none;
+  color:#FFF6E3;
+  background-color: #344C70;
+}
+
+.Button-both:visited  {
+  text-decoration: none;
+  color:#FFF6E3;
+  background-color: #344C70;
 }

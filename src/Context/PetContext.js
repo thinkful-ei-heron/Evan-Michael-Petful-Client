@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 const PetContext = React.createContext ({
+  inQueue: '',
+  setInQueue: () => {},
   petList: [],
   error: null,
   setError: () => {},
@@ -12,6 +14,7 @@ export default PetContext
 export class PetProvider extends Component {
   state = {
     petList: [],
+    inQueue: '',
     error: null,
   };
   setError = error => {
@@ -23,9 +26,14 @@ export class PetProvider extends Component {
   setPetList = petList => {
     this.setState({ petList })
   }
+  setInQueue = inQueue => {
+    this.setState({ inQueue })
+  }
   render() {
     const value = {
-      petList:this.state.petList,
+      inQueue: this.state.inQueue,
+      setInQueue: this.setInQueue,
+      petList: this.state.petList,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
