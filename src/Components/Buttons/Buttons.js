@@ -61,6 +61,7 @@ export default class Buttons extends Component {
   }
 
   render() {
+    console.log(this.context)
     return (
       <section className='Button-section'>
         <button 

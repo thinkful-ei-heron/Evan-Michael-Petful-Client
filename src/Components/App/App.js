@@ -11,8 +11,12 @@ export default class App extends Component {
   static contextType = PetContext;
 
   renderPetInfo() {
+    const { pet } = this.context
     return (
-      <PetInfo />
+      <PetInfo 
+        key = {pet}
+        pet = {pet}
+        />
     )
   }
 
