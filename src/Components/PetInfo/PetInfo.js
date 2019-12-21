@@ -11,14 +11,15 @@ export default class PetInfo extends Component {
     return (
       <div>
         <section>
-          <h3>Next pet available for adoption:</h3>
-          <fieldset>
-            <legend className='pet-name'>{pet.name}</legend>
+          <fieldset className='pet-fieldset'>
+            <legend className='pet-name'>
+              <h3 className='pet-name-legend'>{pet.name}</h3>
+            </legend>
             <img className='pet-image'src={pet.imageURL} alt={pet.imageDescription} />
-            <p>{pet.imageDescription}</p>
-            <li>{pet.sex}</li>
-            <li>{pet.age}</li>
-            <li>{pet.breed}</li>
+            <p>"{pet.imageDescription}"</p>
+            <li>Gender: {pet.sex}</li>
+            <li>Age: {pet.age}</li>
+            <li>Breed: {pet.breed}</li>
             <p>{pet.story}</p>
           </fieldset>
         </section>

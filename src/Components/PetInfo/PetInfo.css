@@ -1,5 +1,6 @@
 .pet-image {
   height: 300px;
+  width: auto;
 }
 
 .pet-name {
@@ -7,6 +8,15 @@
   font-size: 200%;
 }
 
+.pet-name-legend {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
 li {
   list-style: none;
+}
+
+.pet-fieldset {
+  margin: 2% 10% 2% 10%;
 }
