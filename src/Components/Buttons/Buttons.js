@@ -192,8 +192,8 @@ export default class Buttons extends Component {
   };
 
   render() {
-    console.log(this.context);
-    console.log(this.context.userList);
+    // console.log(this.context);
+    // console.log(this.context.userList);
     return (
       <section className="Button-section">
         <button
@@ -231,13 +231,6 @@ export default class Buttons extends Component {
         >
           Only see the next available pet!
         </button>
-        {/* <button
-          className="hidden"
-          id="Button-adopt"
-          onClick={this.handleClickAdopt}
-        >
-          Adopt your pet!
-        </button> */}
       </section>
     );
   }
