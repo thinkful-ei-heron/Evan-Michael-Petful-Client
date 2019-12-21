@@ -96,6 +96,7 @@ export default class Buttons extends Component {
       })
       .catch(this.context.setError);
     setInterval(() => {
+      console.log(this.context.userList)
       if(this.state.viewAll === false) {
         ApiService.getCat()
           .then(cat => {

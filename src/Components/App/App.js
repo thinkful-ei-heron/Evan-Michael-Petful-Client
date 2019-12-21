@@ -30,7 +30,7 @@ export default class App extends Component {
 //TO DO -- Take the state from Button and drill up to here
   setAdoption = () => {
     this.setState({displayAdoption: true})
-    ApiService.adoptBoth()
+    ApiService.adoptCat()
   }
 
   renderDescription() {
