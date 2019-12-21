@@ -4,10 +4,12 @@ const PetContext = React.createContext ({
   inQueue: false,
   setInQueue: () => {},
   petList: [],
+  userList: [],
   error: null,
   setError: () => {},
   clearError: () => {},
-  setPetList: (petList) => {}
+  setPetList: (petList) => {},
+  setUserList: (userList) => {},
 })
 
 export default PetContext
@@ -15,6 +17,7 @@ export default PetContext
 export class PetProvider extends Component {
   state = {
     petList: [],
+    userList: [],
     inQueue: false,
     error: null,
   };
@@ -30,15 +33,20 @@ export class PetProvider extends Component {
   setInQueue = (inQueue) => {
     this.setState({ inQueue: true })
   }
+  setUserList = (userList) => {
+    this.setState({ userList })
+  }
   render() {
     const value = {
       inQueue: this.state.inQueue,
       setInQueue: this.setInQueue,
       petList: this.state.petList,
+      userList: this.state.userList,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
-      setPetList:this.setPetList,
+      setPetList: this.setPetList,
+      setUserList: this.setUserList
     }
     return(
       <PetContext.Provider value={value}>

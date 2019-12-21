@@ -8,6 +8,7 @@ export default class Buttons extends Component {
     searchForDog: false,
     searchForCat: false,
     searchForBoth: false,
+    viewAll: false,
   }
   static contextType = PetContext;
 
@@ -21,9 +22,9 @@ export default class Buttons extends Component {
     let elementBoth = document.getElementById('Button-both');
     elementBoth.classList.remove('Button-both');
     elementBoth.classList.add('hidden');
-    let elementAdopt = document.getElementById('Button-adopt');
-    elementAdopt.classList.remove('hidden');
-    elementAdopt.classList.add('Button-adopt');
+    // let elementAdopt = document.getElementById('Button-adopt');
+    // elementAdopt.classList.remove('hidden');
+    // elementAdopt.classList.add('Button-adopt');
     this.handleChangeToNextClass();
   };
 
@@ -34,6 +35,9 @@ export default class Buttons extends Component {
     let elementAll = document.getElementById('Button-all');
     elementAll.classList.remove('hidden');
     elementAll.classList.add('Button-all');
+    this.setState({
+      viewAll: false,
+    })
     if (this.state.searchForCat === true) {
       return ApiService.getCat()
       .then(cat => {
@@ -58,6 +62,9 @@ export default class Buttons extends Component {
     let elementAll = document.getElementById('Button-all');
     elementAll.classList.remove('Button-all');
     elementAll.classList.add('hidden');
+    this.setState({
+      viewAll: true,
+    })
     if (this.state.searchForCat === true) {
       return ApiService.getCats()
       .then(cat => {
@@ -82,61 +89,111 @@ export default class Buttons extends Component {
     this.context.setInQueue();
     this.handleChangeAdoptClass();
     this.setState({ searchForCat: true })
+    ApiService.postUser(true, false)
     ApiService.getCat()
       .then(cat => {
         this.context.setPetList([cat]);
       })
       .catch(this.context.setError);
-    setInterval(e => {
-      ApiService.adoptCat()
-      .then(ApiService.getCat()
-      .then(cat => {
-        this.context.setPetList([cat]);
-      })
-      .catch(this.context.setError))
-    }, 8000)
+    setInterval(() => {
+      if(this.state.viewAll === false) {
+        ApiService.getCat()
+          .then(cat => {
+            this.context.setPetList([cat]);
+          })
+        ApiService.getUsers()
+          .then(user => {
+            this.context.setUserList(user)
+            if(user[0].name === 'user') {
+              this.props.setAdoption()
+            }
+          })
+          .catch(this.context.setError)
+      } else if (this.state.viewAll === true) {
+        ApiService.getCats()
+          .then(cats => {
+            this.context.setPetList(cats);
+          })
+        ApiService.getUsers()
+          .then(user => {
+            this.context.setUserList(user)
+          })
+          .catch(this.context.setError)
+        }
+      }, 3000)
   };
 
   handleClickWantDog = () => {
     this.context.setInQueue();
     this.handleChangeAdoptClass();
     this.setState({ searchForDog: true })
+    ApiService.postUser(false, true)
     ApiService.getDog()
       .then(dog => {
         this.context.setPetList([dog]);
       })
       .catch(this.context.setError);
-    setInterval(e => {
-      ApiService.adoptDog()
-      .then(ApiService.getDog()
-      .then(dog => {
-        this.context.setPetList([dog]);
-      })
-      .catch(this.context.setError))
-    }, 8000)
+    setInterval(() => {
+      if(this.state.viewAll === false) {
+        ApiService.getDog()
+          .then(dog => {
+            this.context.setPetList([dog]);
+          })
+        ApiService.getUsers()
+          .then(user => {
+            this.context.setUserList(user)
+          })
+          .catch(this.context.setError)
+      } else if (this.state.viewAll === true) {
+        ApiService.getDogs()
+          .then(dogs => {
+            this.context.setPetList(dogs);
+          })
+        ApiService.getUsers()
+          .then(user => {
+            this.context.setUserList(user)
+          })
+          .catch(this.context.setError)
+        }
+      }, 3000)
   };
 
   handleClickWantBoth = () => {
     this.context.setInQueue();
     this.handleChangeAdoptClass();
     this.setState({ searchForBoth: true })
+    ApiService.postUser(true, true)
     ApiService.getBoth().then(this.context.setPetList);
-    setInterval(e => {
-      ApiService.adoptCat()
-      .then(ApiService.getCat()
-      .then(cat => {
-        this.context.setPetList([cat]);
+    setInterval(() => {
+      ApiService.getBoth()
+      .then(both => {
+        this.context.setPetList([both]);
       })
-      .catch(this.context.setError))
-    }, 8000)
+      ApiService.getUsers()
+        .then(user => {
+          this.context.setUserList(user)
+        })
+      .catch(this.context.setError)
+    }, 3000)
   };
 
   handleClickAdopt = () => {
-    this.setState({ inQueue: false });
+    this.setState({ 
+      inQueue: false, 
+      viewAll: false
+    });
+    if(this.state.searchForDog === true) {
+      return ApiService.adoptDog()
+    } else if (this.state.searchForCat === true) {
+      return ApiService.adoptCat()
+    } else if (this.state.searchForBoth === true) {
+      return ApiService.adoptBoth()
+    }
   };
 
   render() {
     console.log(this.context);
+    console.log(this.context.userList);
     return (
       <section className="Button-section">
         <button
@@ -174,13 +231,13 @@ export default class Buttons extends Component {
         >
           Only see the next available pet!
         </button>
-        <button
+        {/* <button
           className="hidden"
           id="Button-adopt"
           onClick={this.handleClickAdopt}
         >
           Adopt your pet!
-        </button>
+        </button> */}
       </section>
     );
   }

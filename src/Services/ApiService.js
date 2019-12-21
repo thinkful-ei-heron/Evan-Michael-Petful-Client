@@ -41,6 +41,16 @@ const ApiService = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
+  adoptBoth() {
+    const URLs = [`${config.API_ENDPOINT}/cat`, `${config.API_ENDPOINT}/dog`];
+    return Promise.all(URLs.map(url => fetch(url, {method: 'DELETE'}))).then(responses =>
+      Promise.all(
+        responses.map(res =>
+          !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+        )
+      )
+    );
+  },
   adoptCat() {
     return fetch(`${config.API_ENDPOINT}/cat`, {
       method: 'DELETE'
@@ -50,6 +60,29 @@ const ApiService = {
     return fetch(`${config.API_ENDPOINT}/dog`, {
       method: 'DELETE'
     }).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : ''));
+  },
+  getUsers() {
+    return fetch(`${config.API_ENDPOINT}/user/all`).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
+  },
+  postUser(cat, dog) {
+    return fetch(`${config.API_ENDPOINT}/user`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: 'user',
+        cat: cat,
+        dog: dog
+      })
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+    );
   }
 };
 
