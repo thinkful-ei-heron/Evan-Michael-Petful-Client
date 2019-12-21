@@ -14,8 +14,8 @@ export default class App extends Component {
     return (
       <>
         {' '}
-        {petList.map(pet => (
-          <PetInfo key={pet} pet={pet} />
+        {petList.map((pet, index) => (
+          <PetInfo key={index} pet={pet} />
         ))}
       </>
     );

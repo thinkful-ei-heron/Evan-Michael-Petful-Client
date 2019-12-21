@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ApiService from '../../Services/ApiService';
 import PetContext from '../../Context/PetContext';
+import './PetInfo.css';
 
 export default class PetInfo extends Component {
   static contextType = PetContext;
@@ -12,8 +13,8 @@ export default class PetInfo extends Component {
         <section>
           <h3>Next pet available for adoption:</h3>
           <fieldset>
-            <legend>{pet.name}</legend>
-            <img src={pet.imageURL} alt={pet.imageDescription} />
+            <legend className='pet-name'>{pet.name}</legend>
+            <img className='pet-image'src={pet.imageURL} alt={pet.imageDescription} />
             <p>{pet.imageDescription}</p>
             <li>{pet.sex}</li>
             <li>{pet.age}</li>

@@ -1,0 +1,12 @@
+.pet-image {
+  height: 300px;
+}
+
+.pet-name {
+  font-weight: 700;
+  font-size: 200%;
+}
+
+li {
+  list-style: none;
+}

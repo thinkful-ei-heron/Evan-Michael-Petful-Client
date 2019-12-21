@@ -21,6 +21,16 @@ const ApiService = {
       )
     );
   },
+  getBothAll() {
+    const URLs = [`${config.API_ENDPOINT}/cat/all`, `${config.API_ENDPOINT}/dog/all`];
+    return Promise.all(URLs.map(url => fetch(url))).then(responses =>
+      Promise.all(
+        responses.map(res =>
+          !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+        )
+      )
+    );
+  },
   getCats() {
     return fetch(`${config.API_ENDPOINT}/cat/all`).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()

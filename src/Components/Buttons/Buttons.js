@@ -4,6 +4,11 @@ import './Buttons.css';
 import ApiService from '../../Services/ApiService';
 
 export default class Buttons extends Component {
+  state = {
+    searchForDog: false,
+    searchForCat: false,
+    searchForBoth: false,
+  }
   static contextType = PetContext;
 
   handleChangeAdoptClass = () => {
@@ -29,6 +34,21 @@ export default class Buttons extends Component {
     let elementAll = document.getElementById('Button-all');
     elementAll.classList.remove('hidden');
     elementAll.classList.add('Button-all');
+    if (this.state.searchForCat === true) {
+      return ApiService.getCat()
+      .then(cat => {
+        this.context.setPetList([cat]);
+      })
+      .catch(this.context.setError);
+    } else if (this.state.searchForDog === true) {
+      return ApiService.getDog()
+      .then(dog => {
+        this.context.setPetList([dog]);
+      })
+      .catch(this.context.setError);
+    } else if (this.state.searchForBoth === true) {
+      return ApiService.getBoth().then(this.context.setPetList);
+    }
   };
 
   handleChangeToAllClass = () => {
@@ -38,32 +58,77 @@ export default class Buttons extends Component {
     let elementAll = document.getElementById('Button-all');
     elementAll.classList.remove('Button-all');
     elementAll.classList.add('hidden');
+    if (this.state.searchForCat === true) {
+      return ApiService.getCats()
+      .then(cat => {
+        this.context.setPetList(cat);
+      })
+      .catch(this.context.setError);
+    } else if (this.state.searchForDog === true) {
+      return ApiService.getDogs()
+      .then(dog => {
+        this.context.setPetList(dog);
+      })
+      .catch(this.context.setError);
+    } else if (this.state.searchForBoth === true) {
+      return ApiService.getBothAll()
+        .then(data => {
+          this.context.setPetList([...data[0], ...data[1]])
+        });
+    }
   };
 
   handleClickWantCat = () => {
     this.context.setInQueue();
     this.handleChangeAdoptClass();
+    this.setState({ searchForCat: true })
     ApiService.getCat()
       .then(cat => {
         this.context.setPetList([cat]);
       })
       .catch(this.context.setError);
+    setInterval(e => {
+      ApiService.adoptCat()
+      .then(ApiService.getCat()
+      .then(cat => {
+        this.context.setPetList([cat]);
+      })
+      .catch(this.context.setError))
+    }, 8000)
   };
 
   handleClickWantDog = () => {
     this.context.setInQueue();
     this.handleChangeAdoptClass();
+    this.setState({ searchForDog: true })
     ApiService.getDog()
       .then(dog => {
         this.context.setPetList([dog]);
       })
       .catch(this.context.setError);
+    setInterval(e => {
+      ApiService.adoptDog()
+      .then(ApiService.getDog()
+      .then(dog => {
+        this.context.setPetList([dog]);
+      })
+      .catch(this.context.setError))
+    }, 8000)
   };
 
   handleClickWantBoth = () => {
     this.context.setInQueue();
     this.handleChangeAdoptClass();
+    this.setState({ searchForBoth: true })
     ApiService.getBoth().then(this.context.setPetList);
+    setInterval(e => {
+      ApiService.adoptCat()
+      .then(ApiService.getCat()
+      .then(cat => {
+        this.context.setPetList([cat]);
+      })
+      .catch(this.context.setError))
+    }, 8000)
   };
 
   handleClickAdopt = () => {
