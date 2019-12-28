@@ -7,7 +7,6 @@ export default class Congrats extends Component {
         <h1>Congratulations!</h1>
         <h2>You adopted a pet!</h2>
       </div>
-
     )
   }
 

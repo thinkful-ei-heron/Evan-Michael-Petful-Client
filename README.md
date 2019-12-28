@@ -1,7 +1,13 @@
-### Created By ### 
+# Petful
 
-Evan Vogts and Michael Kirsch
+## Summary
 
+This is the client for the 'Petful' full stack project for Thinkful.
+
+## Contributors
+
+Evan Vogts
+Michael Kirsch
 
 ### Live Link ###
 
