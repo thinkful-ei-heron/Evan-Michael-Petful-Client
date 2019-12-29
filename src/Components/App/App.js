@@ -7,7 +7,7 @@ import PetContext from '../../Context/PetContext';
 import Congrats from '../Congrats/Congrats';
 import './App.css';
 import ApiService from '../../Services/ApiService';
-import {findPossiblePets} from '../../Utilities/PetUtil'
+import {findPossiblePets} from '../../Utilities/PetUtil';
 
 export default class App extends Component {
 

@@ -39,4 +39,4 @@ function produceNewPetList(type, result) {
     return newPetList;
 }
 
-module.exports = {findPossiblePets, produceNewPetList }
+export {findPossiblePets, produceNewPetList }
