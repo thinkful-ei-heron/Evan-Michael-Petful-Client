@@ -15,8 +15,8 @@ const PetContext = React.createContext ({
 export default PetContext
 
 export class PetProvider extends Component {
-  state = {
-    petList: [],
+  state = { //petList {dogs: [], cats: []} or petList [[dogs],[cats]]
+    petList: {cats: [], dogs: []},
     userList: [],
     inQueue: false,
     error: null,

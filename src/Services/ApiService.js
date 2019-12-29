@@ -13,22 +13,24 @@ const ApiService = {
   },
   getBoth() {
     const URLs = [`${config.API_ENDPOINT}/cat`, `${config.API_ENDPOINT}/dog`];
-    return Promise.all(URLs.map(url => fetch(url))).then(responses =>
-      Promise.all(
+    return Promise.all(URLs.map(url => fetch(url))).then(responses =>{
+      //console.log(responses)
+      return Promise.all(
         responses.map(res =>
           !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
         )
-      )
+      )}
     );
   },
   getBothAll() {
     const URLs = [`${config.API_ENDPOINT}/cat/all`, `${config.API_ENDPOINT}/dog/all`];
     return Promise.all(URLs.map(url => fetch(url))).then(responses =>
-      Promise.all(
+{     // console.log(responses)
+      return Promise.all(
         responses.map(res =>
           !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
         )
-      )
+      )}
     );
   },
   getCats() {
@@ -42,6 +44,7 @@ const ApiService = {
     );
   },
   adoptBoth() {
+    this.clearUser();
     const URLs = [`${config.API_ENDPOINT}/cat`, `${config.API_ENDPOINT}/dog`];
     return Promise.all(URLs.map(url => fetch(url, {method: 'DELETE'}))).then(responses =>
       Promise.all(
@@ -52,15 +55,21 @@ const ApiService = {
     );
   },
   adoptCat() {
+    this.clearUser();
     return fetch(`${config.API_ENDPOINT}/cat`, {
       method: 'DELETE'
     }).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : ''));
   },
   adoptDog() {
+    this.clearUser();
     return fetch(`${config.API_ENDPOINT}/dog`, {
       method: 'DELETE'
     }).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : ''));
   },
+  clearUser() {
+    return fetch(`${config.API_ENDPOINT}/user`, {
+      method: 'DELETE'
+    }).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : ''));  },
   getUsers() {
     return fetch(`${config.API_ENDPOINT}/user/all`).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
@@ -83,6 +92,14 @@ const ApiService = {
           ? res.json().then(e => Promise.reject(e))
           : res.json()
     );
+  },
+  testCleanupUser() {
+    const users = this.getUsers();
+    let idx = users.findIndex(user => user.name === 'user')
+    while (idx >= 0) {
+      idx--;
+      this.clearUser();
+    }
   }
 };
 

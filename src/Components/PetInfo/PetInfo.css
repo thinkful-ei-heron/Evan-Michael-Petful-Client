@@ -17,6 +17,10 @@ li {
   list-style: none;
 }
 
-.pet-fieldset {
+.pet-result {
   margin: 2% 10% 2% 10%;
+}
+
+.last-possible {
+  background-color: yellow;
 }
